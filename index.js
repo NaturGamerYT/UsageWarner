@@ -204,6 +204,9 @@ function createTextIcon(text, color = 'white') {
     return nativeImage.createFromBuffer(pngBuffer);
 }
 
+let cpuWarned = false;
+let ramWarned = false;
+
 function updateUsageIcons() {
   const cpuUsage = getCpuUsagePercent();
   const ramUsage = getRamUsagePercent();
@@ -219,8 +222,23 @@ function updateUsageIcons() {
 
   trayCpu.setToolTip(`CPU Auslastung: ${cpuUsage}%`);
   trayRam.setToolTip(`RAM Auslastung: ${ramUsage}%`);
-}
 
+  // CPU Warnlogik
+  if (cpuUsage >= settings.cpuWarningLevel && !cpuWarned) {
+    showNotification(`CPU-Warnung: ${cpuUsage}% Auslastung`);
+    cpuWarned = true;
+  } else if (cpuUsage < settings.cpuWarningLevel) {
+    cpuWarned = false;
+  }
+
+  // RAM Warnlogik
+  if (ramUsage >= settings.ramWarningLevel && !ramWarned) {
+    showNotification(`RAM-Warnung: ${ramUsage}% Auslastung`);
+    ramWarned = true;
+  } else if (ramUsage < settings.ramWarningLevel) {
+    ramWarned = false;
+  }
+}
 
 app.whenReady().then(() => {
   loadSettings();
@@ -241,7 +259,7 @@ app.whenReady().then(() => {
   trayMain.on('double-click', () => trayMain.popUpContextMenu());
 
   updateUsageIcons();
-  setInterval(updateUsageIcons, 5000);
+  setInterval(updateUsageIcons, 1000);
 });
 
 app.on('window-all-closed', (e) => e.preventDefault());

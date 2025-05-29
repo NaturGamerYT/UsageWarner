@@ -2,7 +2,7 @@
   "name": "usagewarner",
   "author": "NaturGamer YT",
   "productName": "Usage Warner",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "main": "index.js",
   "build": {
     "appId": "com.naturgameryt.usagewarner",

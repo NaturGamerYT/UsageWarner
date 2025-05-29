@@ -2,13 +2,20 @@
   "name": "usagewarner",
   "author": "NaturGamer YT",
   "productName": "Usage Warner",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "main": "index.js",
   "build": {
     "appId": "com.naturgameryt.usagewarner",
     "win": {
-        "target": "nsis",
-        "icon": "icon.ico"
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "icon": "icon.ico"
     },
     "directories": {
       "output": "dist"
@@ -23,16 +30,17 @@
       "runAfterFinish": false
     }
   },
-
   "scripts": {
     "start": "electron .",
     "build": "electron-builder"
   },
   "devDependencies": {
     "electron": "^25.3.0",
-    "electron-builder": "^26.0.12"
+    "electron-builder": "^26.0.12",
+    "electron-rebuild": "^3.2.9"
   },
   "dependencies": {
-    "canvas": "^3.1.0"
+    "canvas": "^3.1.0",
+    "node-gyp": "^11.2.0"
   }
 }

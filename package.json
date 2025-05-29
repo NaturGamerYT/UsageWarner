@@ -1,0 +1,38 @@
+{
+  "name": "usagewarner",
+  "author": "NaturGamer YT",
+  "productName": "Usage Warner",
+  "version": "1.0.3",
+  "main": "index.js",
+  "build": {
+    "appId": "com.naturgameryt.usagewarner",
+    "win": {
+        "target": "nsis",
+        "icon": "icon.ico"
+    },
+    "directories": {
+      "output": "dist"
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "Usage Warner",
+      "runAfterFinish": false
+    }
+  },
+
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder"
+  },
+  "devDependencies": {
+    "electron": "^25.3.0",
+    "electron-builder": "^26.0.12"
+  },
+  "dependencies": {
+    "canvas": "^3.1.0"
+  }
+}

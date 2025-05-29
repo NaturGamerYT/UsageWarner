@@ -1,0 +1,7 @@
+win:
+  target: nsis
+  icon: icon.ico
+  unpackDirName: UsageWarner
+  fileAssociations: []
+compression: maximum
+nodeGypRebuild: false
